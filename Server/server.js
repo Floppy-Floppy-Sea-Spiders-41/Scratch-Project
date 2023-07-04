@@ -1,18 +1,20 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const controller = require('./controllers/controller.js');
 const PORT = 3000;
+
+const cookieParser = require('cookie-parser');
+const serverRouter = require('./routes/serverRouter');
+app.use(cookieParser());
+
 
 app.use(express.json());
 // if you ever have a form on your frontend, express.urlencoded
 app.use(express.urlencoded({ extended: true })); // this will be helpful for stringifying a form req from an .html file
 
 
-app.post('/api', controller.getStretches, (req, res) => {
-    return res.status(200).json(res.locals.apiRes);
-    
-});
+// send server req to serverRouter
+app.use('/api', serverRouter);
 
 
 //REPLACE THIS WITH A NICE 404 PAGE

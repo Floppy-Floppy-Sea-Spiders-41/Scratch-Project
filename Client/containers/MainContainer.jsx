@@ -1,37 +1,63 @@
 import React, { useState } from 'react';
 import Stretch from '../components/Stretch.jsx';
 import { redirect } from 'react-router-dom';
+import axios from 'axios';
 
 const MainContainer = () => {
   //define state variable
-  const [stretches, setStretches] = useState([]);
+  const [stretches, setStretches] = useState();
   const [input, setInput] = useState('');
   // let formInput = '';
   // stretchesFromAPI is an array that holds a series of objects, where each object is a stretch we have pulled from our query to our server
   //let stretchesFromAPI = [{}, {}, {}];
   let stretchesFromAPI = [{}, {}];
-
+// frontend needs to send call to backend via axios call
   // stretchFetch is an async func that accepts as a param a muscle from user input in search bar
   const stretchFetch = async (muscle) => {
+
+    const data = {
+      muscle,
+    };
+    
+    const config = {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    
+    };
     try {
-      // fetch request to server 3000
-      const response = await fetch(
-        `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}&type=stretching`,
-        {
-          method: 'GET',
-          headers: { 'X-Api-Key': 'SReYt5aEyGMKzrdSe87wew==boZAObqiLCiQPGrb' },
-        }
-      );
-      console.log('running stretchFetch on line 19');
-      console.log(response);
-      stretchesFromAPI = await response.json();
-      setStretches(stretchesFromAPI); // We moved this to the handleChange event.
-      redirect('/');
-      return;
-    } catch (err) {
-      console.log('Error from stretchFetch in MainContainer.jsx');
-    }
-  };
+      const result = await axios.post('/api', data, config);
+      console.log(result);
+      setStretches(result);
+      redirect('/')
+    } catch(error){
+      console.log(error.message);
+    };
+    
+    
+
+
+    
+    
+  //   try {
+  //     // fetch request to server 3000
+  //     const response = await fetch(
+  //       `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}&type=stretching`,
+  //       {
+  //         method: 'GET',
+  //         headers: { 'X-Api-Key': 'SReYt5aEyGMKzrdSe87wew==boZAObqiLCiQPGrb' },
+         }
+  //     );
+  //     console.log('running stretchFetch on line 19');
+  //     console.log(response);
+  //     stretchesFromAPI = await response.json();
+  //     setStretches(stretchesFromAPI); // We moved this to the handleChange event.
+  //     redirect('/');
+  //     return;
+  //   } catch (err) {
+  //     console.log('Error from stretchFetch in MainContainer.jsx');
+  //   }
+  // };
 
   //event handler for submit
   const handleSubmit = (event) => {
@@ -81,8 +107,9 @@ const MainContainer = () => {
       </form>
 
       {/* Stretch are individual search results from query to database/API */}
+      { stretches !== null ? stretchComponents : null }
       <div className='stretchBox'>{stretchComponents}</div>
-    </div>
+    </div> 
   );
 };
 export default MainContainer;

@@ -11,15 +11,22 @@ const StretchController = {
    // The getStretches method is a function that accepts 3 params, req, res, next, and stores the result of a fetch request to the exercises api in our 
    getStretches: async (req, res, next) => {
         try { 
+
+            console.log('HIT!!!')
             // init const muscle as muscle prop of request query
-            const { muscle } = req.query; 
+            const { muscle } = req.body; 
+            console.log(muscle)
             // init const apiRes as output from api request
             const apiRes = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${muscle}&type=stretching`, {
                 method: 'GET',
                 headers: { 'X-Api-Key': 'SReYt5aEyGMKzrdSe87wew==boZAObqiLCiQPGrb'},
             })
+            const finalRes = await apiRes.json()
+            console.log(finalRes)
+
+            
             // store apiRes in res.locals
-            res.locals.apiRes = apiRes;
+            res.locals.apiRes = finalRes;
             // return the invocation of next to move to next middleware
             return next();
         } catch (error) {

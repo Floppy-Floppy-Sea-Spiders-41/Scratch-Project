@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true })); // this will be helpful for str
 // const stretchRouter = express.Router();
 
 // /API/exercises?muscle=${muscle}&type=stretching
-app.get('/api', controller.getStretches, (req, res) => {
+app.post('/api', controller.getStretches, (req, res) => {
     return res.status(200).json(res.locals.apiRes);
 });
 
@@ -36,6 +36,10 @@ app.get('/api', controller.getStretches, (req, res) => {
 //     return res.status(200).json(res.locals.apiRes);
 // });
 
+
+app.get('*', (req, res) => {
+    res.send('API RUNNING!')
+})
 // global error handler
 app.use((err, req, res, next) => {
     const defaultErr = {

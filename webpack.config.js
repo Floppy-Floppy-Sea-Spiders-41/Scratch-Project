@@ -9,7 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
-  mode: process.env.NODE_ENV,
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   module: {
     rules: [
       {
@@ -54,7 +54,7 @@ module.exports = {
     static: {
       directory: path.resolve(__dirname, 'build'),
     },
-    proxy: { '/api': 'http://localhost:3000/api' },
+    proxy: { '/api': 'http://localhost:3000' },
     // port: 3000,
   },
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 Modal.setAppElement('#app');
 
@@ -10,16 +11,20 @@ const RegisterModal = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/api/register', { name, email, password });
-      //HANDLE SUCCESSFUL REG HERE - REDIRECT???
-      console.log(response);
-    } catch (err) {
-        //NEED BETTER ERROR HANDLING
-      console.error(err);
-    }
+    setModalIsOpen(false)
+    navigate('/homepage')
+    // try {
+    //   const response = await axios.post('/api/register', { name, email, password });
+    //   //HANDLE SUCCESSFUL REG HERE - REDIRECT???
+    //   console.log(response);
+    // } catch (err) {
+    //     //NEED BETTER ERROR HANDLING
+    //   console.error(err);
+    // }
   }
 
   return (

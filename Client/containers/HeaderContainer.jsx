@@ -6,13 +6,15 @@ import LoginModal from '../components/LoginModal.jsx';
 const HeaderContainer = () => {
   return (
     <div id='navBar'>
-      <header>
-        <h1 className='navHeader'>Ready to get your stretch on?</h1>
-      </header>
-      <div id='flex-item'></div>
+
       <div id='flex-item'>
         <p>Stretch.io</p>
       </div>
+      <header>
+        <h1 className='navHeader'>Ready to get your stretch on?</h1>
+      </header>
+      
+      
       <div id='flex-item' className='authButtons'>
         <div className='authButton'>
           <RegisterModal />

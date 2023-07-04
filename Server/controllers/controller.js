@@ -1,5 +1,4 @@
-// require('dotenv').config();
-// const apiKEY = process.env.API_KEY; 
+const axios = require('axios')
 
 // need to pass above object and the API key into the request to the API. 
 // we added some .env stuff, not being used as this page is sufficient
@@ -17,17 +16,13 @@ const StretchController = {
             const { muscle } = req.body; 
             console.log(muscle)
             // init const apiRes as output from api request
-            const apiRes = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${muscle}&type=stretching`, {
-                method: 'GET',
-                headers: { 'X-Api-Key': 'SReYt5aEyGMKzrdSe87wew==boZAObqiLCiQPGrb'},
-            })
-            const finalRes = await apiRes.json()
-            console.log(finalRes)
+            const response = await axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${muscle}&type=stretching`, {
+                headers: { 'x-api-key': 'SReYt5aEyGMKzrdSe87wew==boZAObqiLCiQPGrb'}
+            });
 
-            
-            // store apiRes in res.locals
-            res.locals.apiRes = finalRes;
-            // return the invocation of next to move to next middleware
+            console.log(response.data)
+
+            res.locals.apiRes = response.data;
             return next();
         } catch (error) {
             const errorObject = {
@@ -43,6 +38,6 @@ const StretchController = {
    }
 }
 
-StretchController.getStretches({muscle: 'Ilikemuscles'}, {locals: {}}, ()=>{});
+
     
 module.exports = StretchController;

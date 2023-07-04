@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 const LoginModal = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
   
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('/api/login', { email, password });
-          console.log(response);
+          setModalIsOpen(false)
+          navigate('/homepage')
+          //const response = await axios.post('/api/login', { email, password });
+          //console.log(response);
           //UPDATE FRONT END HERE APPROPRIATELY --- REDIRECT?
         } catch (err) {
           console.error(err);

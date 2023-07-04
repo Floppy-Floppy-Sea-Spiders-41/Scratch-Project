@@ -2,6 +2,7 @@
 const path = require('path');
 // require html webpack plugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   entry: './client/index.js',
@@ -15,7 +16,7 @@ module.exports = {
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        //at this point install these: npm install -D babel-loader @babel/core @babel/preset-env @babel/preset-react
+        
         use: {
           loader: 'babel-loader',
           options: {
@@ -23,7 +24,7 @@ module.exports = {
           },
         },
       },
-      //at this point install these: npm install -D sass style-loader css-loader sass-loader
+      
       {
         test: /\.s?css/,
         use: [
@@ -34,20 +35,14 @@ module.exports = {
       },
     ],
   },
-  //at this point, npm install webpack-dev-server --save-dev
-  //at this point, npm install -D webpack-cli
-  //at this point,  npm install --save-dev html-webpack-plugin
-  //also, ensure to require in HtmlWebpackPlugin at the top of this file
-  // npm install nodemon
-  //maybe npm install webpack ! we got an error that webpack command not found
-  //npm install
+  
   plugins: [
     new HtmlWebpackPlugin({
       template: './client/index.html',
       filename: 'index.html',
-      //template: path.resolve(__dirname, './index.html'),//ANOTHER WAY
+      
     }),
-    // new Dotenv(),
+    new Dotenv(),
   ],
   //declare devServer
   devServer: {
@@ -55,6 +50,6 @@ module.exports = {
       directory: path.resolve(__dirname, 'build'),
     },
     proxy: { '/api': 'http://localhost:3000' },
-    // port: 3000,
+    
   },
 };

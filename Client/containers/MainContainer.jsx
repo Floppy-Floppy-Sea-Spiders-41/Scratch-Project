@@ -28,7 +28,7 @@ const MainContainer = () => {
     try {
       const result = await axios.post('/api', data, config);
       console.log(result);
-      setStretches(result);
+      setStretches(result.data);
       redirect('/')
     } catch(error){
       console.log(error.message);
@@ -107,7 +107,7 @@ const MainContainer = () => {
       </form>
 
       {/* Stretch are individual search results from query to database/API */}
-      { stretches !== null ? stretchComponents : null }
+      
       <div className='stretchBox'>{stretchComponents}</div>
     </div> 
   );

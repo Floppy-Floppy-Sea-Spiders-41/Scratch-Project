@@ -4,6 +4,7 @@ import MainContainer from './containers/MainContainer.jsx';
 import HeaderContainer from './containers/HeaderContainer.jsx';
 import HomepageContainer from './containers/HomepageContainer.jsx';
 import SearchContainer from './containers/SearchContainer.jsx';
+import DropdownMenu from './components/Dropdown.jsx';
 
 // Init func app that returns our main containers
 const App = () => {

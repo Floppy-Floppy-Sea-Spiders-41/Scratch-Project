@@ -16,7 +16,7 @@ const LoginModal = () => {
     setModalIsOpen(false);
     try {
       const data = {
-        username,
+        email,
         password,
       };
       const config = {
@@ -28,7 +28,8 @@ const LoginModal = () => {
       console.log(response.data);
       //UPDATE FRONT END HERE APPROPRIATELY --- REDIRECT?
       if (response.status === 200) {
-       // dispatch()
+        console.log(response.data);
+        // dispatch()
         navigate('/homepage');
       }
     } catch (err) {

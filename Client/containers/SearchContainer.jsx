@@ -4,39 +4,33 @@ import { redirect } from 'react-router-dom';
 import axios from 'axios';
 
 const SearchContainer = () => {
-  
   const [stretches, setStretches] = useState();
   const [input, setInput] = useState('');
-  
-  const stretchFetch = async (muscle) => {
 
+  const stretchFetch = async (muscle) => {
     const data = {
       muscle,
     };
-    
+
     const config = {
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    
+      headers: {
+        'Content-Type': 'application/json',
+      },
     };
     try {
       const result = await axios.post('/api', data, config);
       console.log(result);
       setStretches(result.data);
-      redirect('/')
-    } catch(error){
+      redirect('/');
+    } catch (error) {
       console.log(error.message);
-    };
-     
-
-         }
-  
+    }
+  };
 
   //event handler for submit
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     stretchFetch(input);
   };
 
@@ -61,27 +55,35 @@ const SearchContainer = () => {
       );
     });
   }
-  
+
   return (
     <div>
       <h1>SEARCH PAGE!!!!</h1>
-      <form className='searchBar' onSubmit={handleSubmit}>
-        Search:
-        <input
+      <form className='dropdownMenu' onSubmit={handleSubmit}>
+        Select:
+        <select
           id='searchQ'
-          type='text'
-          placeholder='Type muscle here'
+          // type='text'
+          placeholder='Select muscle'
           value={input}
           onChange={handleChange}
-          className='searchInput'
-        />
-        <input id='searchButton' type='submit' className='submitButton' />
+          className='selectInput'
+        >
+          <option value=''>Select muscle</option>
+          <option value='Muscle 1'>Muscle 1</option>
+          <option value='Muscle 2'>Muscle 2</option>
+          {/* <option value=''>Select Muscle</option>
+         {muscles.map((muscle) => (
+          <option key={id} value={musclename}>
+            {musclename}
+          </option>
+         ))} */}
+        </select>
+        <input id='dropMenu' type='submit' className='dropdown' />
       </form>
 
-      
-      
       <div className='stretchBox'>{stretchComponents}</div>
-    </div> 
+    </div>
   );
 };
 export default SearchContainer;

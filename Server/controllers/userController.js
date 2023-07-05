@@ -43,7 +43,7 @@ userController.getStretches = async (req, res, next) => {
 
 
 userController.createUser = (req, res, next) => {
-  const { email, name, password } = req.body;
+  const { name, email, password } = req.body;
   if (!email || !password || !name) {
     res.locals.signedIn = false;
     console.log('fail to create user, missing register info')

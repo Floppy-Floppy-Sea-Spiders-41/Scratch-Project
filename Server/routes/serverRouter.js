@@ -16,6 +16,7 @@ router.post(
 
 router.post(
   '/register',
+  // sessionController.deleteSession,
   userController.createUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
@@ -29,6 +30,7 @@ router.post(
 
 router.post(
   '/login',
+  // sessionController.deleteSession,
   userController.verifyUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
@@ -39,6 +41,19 @@ router.post(
     });
   }
 );
+
+router.patch(
+  //NEED ROUTE from Front End
+  '/favoriteTest',
+  userController.favorites,
+  (req, res) => {
+    return res.status(200).json({
+      //NEED Return info from Front End
+      favoritesList : res.locals.favoriteList
+    })
+  }
+
+)
 
 router.get(
   '/isLoggedIn', 

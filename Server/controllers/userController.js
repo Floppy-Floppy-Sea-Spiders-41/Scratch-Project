@@ -117,4 +117,28 @@ userController.verifyUser = (req, res, next) => {
   });
 };
     
+userController.favorites = async (req, res, next) => {
+  console.log ('userController.favs hit');
+  //Confirm format from front end
+  try {
+    console.log('uC.favs try block')
+    const {email, name, equipment, difficulty, instructions} = req.body;
+    const doc = await User.findOneAndUpdate({email}, 
+      { $push: { favStretches: {name, equipment, difficulty, instructions}}},
+      { new: true}
+    )
+    res.locals.favoriteList = doc.favStretches;
+    console.log('res.locals.favoriteList: ',res.locals.favoriteList)
+    //BUILD - EDGE Case - Prevent double add of favorite
+    return next()
+  }
+  catch (err) {
+    return next({
+      log: 'Error occurred in userController.favorites',
+      status: 500,
+      message: { err: 'An error occurred saving your favorite'}
+    })
+  }
+}
+
 module.exports = userController;

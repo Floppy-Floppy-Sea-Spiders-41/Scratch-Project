@@ -24,6 +24,18 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000, // Adjust the limit as needed
+              encoding: 'base64',
+            },
+          },
+        ],
+      },
       
       {
         test: /\.s?css/,

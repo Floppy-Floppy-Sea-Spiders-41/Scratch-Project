@@ -77,6 +77,7 @@ userController.createUser = (req, res, next) => {
 userController.verifyUser = (req, res, next) => {
   // write code here
   const { email, password } = req.body;
+  console.log('verifyUser hit!', email, password);
   if (!email || !password) {
     res.locals.signedIn = false;
     return next();
@@ -92,6 +93,7 @@ userController.verifyUser = (req, res, next) => {
         message: { err: 'An error occurred in userController.verifyUser' },
       });
     } else {
+      console.log('trying bcrypt!');
       bcrypt
         .compare(password, user.password)
         .then((result) => {

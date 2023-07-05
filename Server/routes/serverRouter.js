@@ -15,7 +15,7 @@ router.post(
 });
 
 router.post(
-  '/signup',
+  '/register',
   userController.createUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
@@ -46,14 +46,15 @@ router.get(
   (req, res) => {
     return res.json({ 
       loggedIn: res.locals.signedIn, 
-      id: req.cookies.ssid });
+      id: req.cookies.ssid 
+    });
   }
 );
 
 router.get(
   '/logout', 
   (req, res) => {
-  return res.status(200).clearCookie('cookieId').redirect('/');
+  return res.status(200).clearCookie('cookieId').redirect('/homepage');
   }
 );
 

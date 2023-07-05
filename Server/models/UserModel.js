@@ -24,4 +24,4 @@ userSchema.pre('save', function(next) {
 
 // Export user model through module.exports
 // The collection name should be 'user'
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema);

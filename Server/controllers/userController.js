@@ -13,6 +13,7 @@ const userController = {};
 
 // The getStretches method is a function that accepts 3 params, req, res, next, and stores the result of a fetch request to the exercises api in our 
 userController.getStretches = async (req, res, next) => {
+  console.log('in');
     try { 
         console.log('HIT!!!')
         // init const muscle as muscle prop of request query
@@ -74,13 +75,13 @@ userController.createUser = (req, res, next) => {
 */
 userController.verifyUser = (req, res, next) => {
   // write code here
-  const { username, password } = req.body;
-  if (!username || !password) {
+  const { email, password } = req.body;
+  if (!email || !password) {
     res.locals.signedIn = false;
     return next();
   }
 
-  User.findOne({ username }, (err, user) => {
+  User.findOne({ email }, (err, user) => {
     if (err) {
       res.locals.signedIn = false;
     //   return next();

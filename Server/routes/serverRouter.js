@@ -46,7 +46,8 @@ router.get(
   (req, res) => {
     return res.json({ 
       loggedIn: res.locals.signedIn, 
-      id: req.cookies.ssid });
+      id: req.cookies.ssid 
+    });
   }
 );
 

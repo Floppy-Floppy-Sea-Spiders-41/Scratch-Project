@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import axios from 'axios';
+
 import { register } from '../actions/userActions';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -19,33 +19,8 @@ const RegisterModal = () => {
     e.preventDefault();
     setModalIsOpen(false)
     dispatch(register(name, email, password))
-    console.log('handle submit hit!!!');
+    // console.log('handle submit hit!!!');
 
-    // try {
-    //   console.log(name);
-    //   const data = {
-    //     name,
-    //     email,
-    //     password,
-    //   };
-
-    //   const config = {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   };
-    //   const response = await axios.post('/api/register', data, config);
-    //   console.log('reponse data back', response.data);
-    //   //HANDLE SUCCESSFUL REG HERE - REDIRECT???
-    //   if (response.status === 200) {
-    //     // dispatch({ type: 'REGISTERED', payload: response.data });
-    //     navigate('/homepage');
-    //   }
-
-    //   //NEED BETTER ERROR HANDLING
-    // } catch (err) {
-    //   console.error(err);
-    // }
   };
 
   return (

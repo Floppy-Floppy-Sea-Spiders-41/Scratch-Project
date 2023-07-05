@@ -47,4 +47,18 @@ sessionController.startSession = (req, res, next) => {
   } else return next();
 };
 
+// sessionController.deleteSession = (req, res, next) => {
+//   Session.delete({ cookieId: req.cookies.ssid }, 
+//     (err, session) => {
+//       if (err) {
+//         return next({
+//           log: 'Error occurred in sessionController.deleteSession.',
+//           status: 500,
+//           message: { err: 'An error occurred in sessionController.deleteSession.' }
+//         });
+//       } else {
+//         return next();
+//       }
+//     })
+// }
 module.exports = sessionController;

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
+import { register } from '../actions/userActions';
 import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 Modal.setAppElement('#app');
 
@@ -12,37 +13,39 @@ const RegisterModal = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //setModalIsOpen(false)
-    console.log('handle submit hit!');
-    try {
-      console.log(name);
-      const data = {
-        name,
-        email,
-        password,
-      };
+    setModalIsOpen(false)
+    dispatch(register(name, email, password))
+    console.log('handle submit hit!!!');
 
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const response = await axios.post('/api/register', data, config);
-      console.log('reponse data back', response.data);
-      //HANDLE SUCCESSFUL REG HERE - REDIRECT???
-      if (response.status === 200) {
-        // dispatch({ type: 'REGISTERED', payload: response.data });
-        navigate('/homepage');
-      }
+    // try {
+    //   console.log(name);
+    //   const data = {
+    //     name,
+    //     email,
+    //     password,
+    //   };
 
-      //NEED BETTER ERROR HANDLING
-    } catch (err) {
-      console.error(err);
-    }
+    //   const config = {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   };
+    //   const response = await axios.post('/api/register', data, config);
+    //   console.log('reponse data back', response.data);
+    //   //HANDLE SUCCESSFUL REG HERE - REDIRECT???
+    //   if (response.status === 200) {
+    //     // dispatch({ type: 'REGISTERED', payload: response.data });
+    //     navigate('/homepage');
+    //   }
+
+    //   //NEED BETTER ERROR HANDLING
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
   return (
@@ -90,9 +93,7 @@ const RegisterModal = () => {
             >
               Close
             </button>
-            <button className='modalButton' onClick={(e) => handleSubmit(e)}>
-              TEST
-            </button>
+            
           </div>
         </form>
       </Modal>

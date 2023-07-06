@@ -55,7 +55,6 @@ const SearchContainer = () => {
     stretches.forEach((stretch) => {
       stretchComponents.push(
         <Stretch
-        
           name={stretch.name}
           equipment={stretch.equipment}
           difficulty={stretch.difficulty}

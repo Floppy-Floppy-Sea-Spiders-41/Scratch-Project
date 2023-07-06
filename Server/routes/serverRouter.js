@@ -7,11 +7,8 @@ const sessionController = require('../controllers/sessionController');
 
 // responses to different requests from front-end
 
-router.post(
-  '/', 
-  userController.getStretches, 
-  (req, res) => {
-    return res.status(200).json(res.locals.apiRes);
+router.post('/', userController.getStretches, (req, res) => {
+  return res.status(200).json(res.locals.apiRes);
 });
 
 router.post(
@@ -21,7 +18,7 @@ router.post(
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
-    return res.status(200).json({  
+    return res.status(200).json({
       loggedIn: res.locals.signedIn,
       userDetail: res.locals.userDetail,
     });
@@ -35,7 +32,7 @@ router.post(
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
-    return res.status(200).json({ 
+    return res.status(200).json({
       loggedIn: res.locals.signedIn,
       userDetail: res.locals.userDetail,
     });
@@ -44,35 +41,38 @@ router.post(
 
 router.patch(
   //NEED ROUTE from Front End
+  //KELVIN - Should we update below to '/favoriteAdd' ?
   '/favoriteTest',
   userController.favorites,
   (req, res) => {
     return res.status(200).json({
       //NEED Return info from Front End
-      favoritesList : res.locals.favoriteList
-    })
-  }
-
-)
-
-router.get(
-  '/isLoggedIn', 
-  sessionController.isLoggedIn, 
-  (req, res) => {
-    return res.json({ 
-      loggedIn: res.locals.signedIn, 
-      id: req.cookies.ssid 
+      addedFavoritesList: res.locals.addedFavoriteList,
     });
   }
 );
 
-router.get(
-  '/logout', 
+router.patch(
+  //NEED ROUTE from Front End
+  '/favoriteDelete',
+  userController.deleteFavorites,
   (req, res) => {
-  return res.status(200).clearCookie('cookieId').redirect('/homepage');
+    return res.status(200).json({
+      //NEED return info from Front End
+      deletedFavoitesList: res.locals.deletedFavoriteList,
+    });
   }
 );
 
+router.get('/isLoggedIn', sessionController.isLoggedIn, (req, res) => {
+  return res.json({
+    loggedIn: res.locals.signedIn,
+    id: req.cookies.ssid,
+  });
+});
+
+router.get('/logout', (req, res) => {
+  return res.status(200).clearCookie('cookieId').redirect('/homepage');
+});
+
 module.exports = router;
-
-

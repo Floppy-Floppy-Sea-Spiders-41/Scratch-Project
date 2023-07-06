@@ -29,8 +29,8 @@ router.post(
   '/login',
   // sessionController.deleteSession,
   userController.verifyUser,
-  cookieController.setSSIDCookie,
-  sessionController.startSession,
+  // cookieController.setSSIDCookie,
+  // sessionController.startSession,
   (req, res) => {
     return res.status(200).json({
       loggedIn: res.locals.signedIn,

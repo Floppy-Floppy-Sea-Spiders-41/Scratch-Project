@@ -34,6 +34,7 @@ sessionController.isLoggedIn = (req, res, next) => {
 */
 sessionController.startSession = (req, res, next) => {
   //write code here  Session.create({cookieId: ....})
+  console.log(res.locals.signedIn)
   if (res.locals.signedIn) {
     Session.create({ cookieId : res.locals.userId }, 
       (err, session) => {

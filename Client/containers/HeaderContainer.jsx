@@ -1,33 +1,84 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles.css';
 import RegisterModal from '../components/RegisterModal.jsx';
 import LoginModal from '../components/LoginModal.jsx';
+import { logout } from '../actions/userActions';
 
 const HeaderContainer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userLogin);
+  const currentPath = location.pathname;
+
+  const handleLogout = () => {
+    console.log('logout hit!!!');
+    dispatch(logout());
+    navigate('/');
+  };
+
+  const handleSearch = () => {
+    navigate('/search');
+  };
+
+  const handleHomePage = () => {
+    navigate('/homepage');
+  };
+
   return (
     <div id='navBar'>
-
       <div id='flex-item'>
         <p>Stretch.io</p>
       </div>
-      <header>
-        <h1 className='navHeader'>Ready to get your stretch on?</h1>
-      </header>
-      
-      
+
       <div id='flex-item' className='authButtons'>
-        <div className='authButton'>
-          <RegisterModal />
-        </div>
-        <div className='authButton'>
-          <LoginModal />
-        </div>
+        {userInfo?.userInfo && (
+          <>
+            {currentPath === '/search' && (
+              <div className='authButton active'>
+                <button className='submitButton' onClick={handleHomePage}>
+                  HomePage
+                </button>
+              </div>
+            )}
+
+            {currentPath === '/homepage' && (
+              <div className='authButton active'>
+                <button className='submitButton' onClick={handleSearch}>
+                  Search Stretches
+                </button>
+              </div>
+            )}
+
+            <div className='authButton'>
+              <button className='submitButton' onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          </>
+        )}
+
+        {!userInfo?.userInfo && (
+          <>
+            <div className='authButton'>
+              <RegisterModal />
+            </div>
+            <div className='authButton'>
+              <LoginModal />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
 };
 
 export default HeaderContainer;
+
+
+
 
 
 

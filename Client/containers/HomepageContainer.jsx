@@ -37,7 +37,7 @@ const HomepageContainer = () => {
   }
 
   return (
-    <div>
+    <div style={{ textAlign: 'center'}}>
       {/* <div>Search for streches or see your favorites below.</div>
       <button onClick={handleClick}>Search Page</button> */}
       <h4>Welcome {user.userInfo.userDetail.name}!</h4>

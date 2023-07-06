@@ -46,7 +46,7 @@ const Stretch = ({ name, equipment, difficulty, instructions }) => {
           Add to Favorites
         </button>
       ) : (
-        <h2>Allready In Favorites</h2>
+        <h2>Already In Favorites</h2>
       )}
     </div>
   );

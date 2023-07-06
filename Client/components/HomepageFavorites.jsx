@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { deleteFavorite } from '../actions/userActions';
 
 const FavoritesStretch = ({
   email,
@@ -13,27 +14,15 @@ const FavoritesStretch = ({
 
   const [removed, setRemoved] = useState(false);
 
+  const dispatch = useDispatch()
+
   const removeFromFavorites = async () => {
     setRemoved(true);
-    console.log(user.userInfo.userDetail.email);
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
+    
+    dispatch(deleteFavorite(email, name))
 
-      const { data } = await axios.patch(
-        '/api/favoriteDelete',
-        { email, name },
-        config
-      );
-      //   dispatch(deleteFavorite(data.deletedFavoitesList))
-      data.deletedFavoitesList;
-    } catch (error) {}
-    // dispatch(deleteFavorite(user.userInfo.userDetail.email, name, equipment, difficulty, instructions))
-    //add to userActions?
-  };
+  }
+    
   //add functionality below to - refresh render
   //add undo functionality? - Removed from Favorites, Re-Add to Favorites? --> removed on refresh?
   return (

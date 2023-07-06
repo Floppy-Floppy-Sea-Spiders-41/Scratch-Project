@@ -11,7 +11,7 @@ import {
 	
 } from '../constants/userConstants';
 
-import { FAVORITES_LIST_REQUEST, FAVORITES_LIST_SUCCESS, FAVORITES_LIST_ADD_REQUEST, FAVORITES_LIST_ADD_SUCCESS, FAVORITES_LIST_ADD_FAIL } from '../constants/favoritesConstants';
+import { FAVORITES_LIST_REQUEST, FAVORITES_LIST_SUCCESS, FAVORITES_LIST_ADD_REQUEST, FAVORITES_LIST_ADD_SUCCESS, FAVORITES_LIST_ADD_FAIL, FAVORITES_LIST_DELETE_REQUEST, FAVORITES_LIST_DELETE_SUCCESS, FAVORITES_LIST_DELETE_FAIL } from '../constants/favoritesConstants';
 
 
 
@@ -142,4 +142,42 @@ export const addFavorite = (email, name, equipment, difficulty, instructions) =>
 	}
 
 }
+
+export const deleteFavorite = (email, name) => async (dispatch) => {
+	try {
+
+		dispatch({type: FAVORITES_LIST_DELETE_REQUEST})
+
+		const config = {
+		  headers: {
+			'Content-Type': 'application/json',
+		  },
+		};
+  
+		const { data } = await axios.patch(
+		  '/api/favoriteDelete',
+		  { email, name },
+		  config
+		);
+
+		console.log('this is in my action after delete: ', data.deletedFavoritesList)
+		
+		dispatch({
+			type: FAVORITES_LIST_DELETE_SUCCESS,
+			payload: data.deletedFavoritesList
+		})
+		
+	  } catch (error) {
+
+		dispatch({type: FAVORITES_LIST_DELETE_FAIL})
+	  }
+	  // dispatch(deleteFavorite(user.userInfo.userDetail.email, name, equipment, difficulty, instructions))
+	  //add to userActions?
+	};
+
+
+
+
+
+
 

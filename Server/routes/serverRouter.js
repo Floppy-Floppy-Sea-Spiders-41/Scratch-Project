@@ -47,21 +47,19 @@ router.patch(
   (req, res) => {
     return res.status(200).json({
       //NEED Return info from Front End
-      //@KELVIN - Should we update below to res.locals.favoritesList (here and on UserController)
-      favoritesList: res.locals.favoriteList,
+      addedFavoritesList: res.locals.addedFavoriteList,
     });
   }
 );
 
-router.delete(
+router.patch(
   //NEED ROUTE from Front End
   '/favoriteDelete',
   userController.deleteFavorites,
   (req, res) => {
     return res.status(200).json({
       //NEED return info from Front End
-      //@KELVIN - Should we update below to res.locals.favoritesList (here and on UserController)
-      favoitesList: res.locals.favoriteList,
+      deletedFavoitesList: res.locals.deletedFavoriteList,
     });
   }
 );

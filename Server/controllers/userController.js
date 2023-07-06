@@ -127,11 +127,7 @@ userController.favorites = async (req, res, next) => {
   try {
     console.log('uC.favs try block');
     const { email, name, equipment, difficulty, instructions } = req.body;
-    console.log(email);
-    console.log(name);
-    console.log(equipment);
-    console.log(difficulty);
-    console.log(instructions);
+    console.log('ADD email, name', email, name);
     const doc = await User.findOneAndUpdate(
       { email },
       {
@@ -139,8 +135,8 @@ userController.favorites = async (req, res, next) => {
       },
       { new: true }
     );
-    res.locals.favoriteList = doc.favStretches;
-    console.log('res.locals.favoriteList: ', res.locals.favoriteList);
+    res.locals.addedFavoriteList = doc.favStretches;
+    console.log('res.locals.favoriteList: ', res.locals.addedFavoriteList);
     //BUILD - EDGE Case - Prevent double add of favorite
     return next();
   } catch (err) {
@@ -152,21 +148,23 @@ userController.favorites = async (req, res, next) => {
   }
 };
 
-userController.deleteFavorites = async (res, req, next) => {
-  console.log('userController.deleteFavs hit');
+userController.deleteFavorites = async (req, res, next) => {
+  // console.log('userController.deleteFavs hit');
   //Confirm format from front end
   try {
-    console.log('uC.deleteFavs try block');
-    const { email, name, equipment, difficulty, instructions } = req.body;
-    const doc = await User.findOneAndDelete(
+    // console.log('uC.deleteFavs try block');
+    // console.log('req body', req.body);
+    const { email, name } = req.body;
+    console.log('email, name', email, name);
+    const doc = await User.findOneAndUpdate(
       { email },
       {
-        $pull: { favStretches: { name, equipment, difficulty, instructions } },
+        $pull: { favStretches: { name } },
       },
       { new: true }
     );
-    res.locals.favoriteList = doc.favStretches;
-    console.log('res.locals.favoriteList: ', res.locals.favoriteList);
+    res.locals.deletedFavoriteList = doc.favStretches;
+    console.log('res.locals.favoriteList: ', res.locals.deletedFavoriteList);
     return next();
   } catch (err) {
     return next({

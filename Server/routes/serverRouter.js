@@ -59,7 +59,7 @@ router.patch(
   (req, res) => {
     return res.status(200).json({
       //NEED return info from Front End
-      deletedFavoitesList: res.locals.deletedFavoriteList,
+      deletedFavoritesList: res.locals.deletedFavoritesList,
     });
   }
 );

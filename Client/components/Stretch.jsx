@@ -1,22 +1,43 @@
-import React from 'react';
+import React, {useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFavorite } from '../actions/userActions';
 
-const Stretch = (props) => {
+const Stretch = ({name, equipment, difficulty, instructions}) => {
+
+  const user = useSelector((state) => state.userLogin);
+  const favs = useSelector((state) => state.favorites);
+  const dispatch = useDispatch()
+
+  const [added, setAdded] = useState(false)
+
+
+
+  const addToFavorites = () => {
+    setAdded(true)
+    console.log(user.userInfo.userDetail.email)
+    dispatch(addFavorite(user.userInfo.userDetail.email, name, equipment, difficulty, instructions))
+  }
+
   // insert any logic for the Stretch here
   // return stretch component with passed-in props from query to server
+  
+
   return (
     <div className='stretchComp'>
-      <h3>{props.name}</h3>
+      <h3>{name}</h3>
       <ul>
         <li>
-          <strong>Equipment:</strong> {props.equipment}
+          <strong>Equipment:</strong> {equipment}
         </li>
         <li>
-          <strong>Difficulty:</strong> {props.difficulty}
+          <strong>Difficulty:</strong> {difficulty}
         </li>
         <li>
-          <strong>Instructions:</strong> {props.instructions}
+          <strong>Instructions:</strong> {instructions}
         </li>
       </ul>
+
+      {!added ? <button onClick={addToFavorites}>Add to Favorites</button> : <h2>Allready In Favorites</h2>}
     </div>
   );
 };

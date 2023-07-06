@@ -2,17 +2,19 @@ import React from 'react';
 import '../styles.css';
 import RegisterModal from '../components/RegisterModal.jsx';
 import LoginModal from '../components/LoginModal.jsx';
+import iconImage from '../images/exercising.svg'
 
 const HeaderContainer = () => {
   return (
     <div id='navBar'>
 
-      <div id='flex-item'>
-        <p>Stretch.io</p>
-      </div>
-      <header>
-        <h1 className='navHeader'>Ready to get your stretch on?</h1>
-      </header>
+<div id='flex-item' className='flex-item'>
+  <img src={iconImage} alt="Icon" className="icon" />
+  <h1 className='navHeader'>Stretch.io</h1>
+</div>
+
+
+      
       
       
       <div id='flex-item' className='authButtons'>

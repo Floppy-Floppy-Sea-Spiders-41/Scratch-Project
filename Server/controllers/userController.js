@@ -149,11 +149,7 @@ userController.favorites = async (req, res, next) => {
 };
 
 userController.deleteFavorites = async (req, res, next) => {
-  // console.log('userController.deleteFavs hit');
-  //Confirm format from front end
   try {
-    // console.log('uC.deleteFavs try block');
-    // console.log('req body', req.body);
     const { email, name } = req.body;
     console.log('email, name', email, name);
     const doc = await User.findOneAndUpdate(
@@ -162,9 +158,11 @@ userController.deleteFavorites = async (req, res, next) => {
         $pull: { favStretches: { name } },
       },
       { new: true }
-    );
-    res.locals.deletedFavoriteList = doc.favStretches;
-    console.log('res.locals.favoriteList: ', res.locals.deletedFavoriteList);
+    )
+    .populate('favStretches'); // <- here's the change
+
+    res.locals.deletedFavoritesList = doc.favStretches;
+    console.log('res.locals.favoriteList: ', res.locals.deletedFavoritesList);
     return next();
   } catch (err) {
     return next({
@@ -174,4 +172,5 @@ userController.deleteFavorites = async (req, res, next) => {
     });
   }
 };
+
 module.exports = userController;

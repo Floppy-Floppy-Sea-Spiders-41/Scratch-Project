@@ -250,22 +250,22 @@ body {
 
 /*-------------------- STRETCH COMPONENT STYLES --------------------*/
 .stretchComp {
-  /* ... your existing styles ... */
+  
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .stretchComp button {
-  /* Apply consistent button styling */
+  
   padding: 10px 20px;
   background-color: #7673d4;
   color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: auto; /* Push the button to the bottom of the container */
-  align-self: flex-end; /* Right-justify the button within the container */
+  margin-top: auto; 
+  align-self: flex-end; 
   transition: background-color 0.3s ease;
 }
 

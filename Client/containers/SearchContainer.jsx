@@ -60,7 +60,6 @@ const SearchContainer = () => {
     <div>
       <h1>SEARCH PAGE!!!!</h1>
       <form className='dropdownMenu' onSubmit={handleSubmit}>
-        Select:
         <select
           id='searchQ'
           // type='text'
@@ -70,8 +69,21 @@ const SearchContainer = () => {
           className='selectInput'
         >
           <option value=''>Select muscle</option>
-          <option value='Muscle 1'>Muscle 1</option>
-          <option value='Muscle 2'>Muscle 2</option>
+          <option value='abductors'>Adductors</option>
+          <option value='biceps'>Biceps</option>
+          <option value='calves'>Calves</option>
+          <option value='chest'>Chest</option>
+          <option value='forearms'>Forearms</option>
+          <option value='glutes'>Glutes</option>
+          <option value='hamstrings'>Hamstrings</option>
+          <option value='lats'>Lats</option>
+          <option value='lower_back'>Lower Back</option>
+          <option value='middle_back'>Middle Back</option>
+          <option value='neck'>Neck</option>
+          <option value='quadriceps'>Quadriceps</option>
+          <option value='traps'>Traps</option>
+          <option value='triceps'>Triceps</option>
+
           {/* <option value=''>Select Muscle</option>
          {muscles.map((muscle) => (
           <option key={id} value={musclename}>
@@ -79,7 +91,7 @@ const SearchContainer = () => {
           </option>
          ))} */}
         </select>
-        <input id='dropMenu' type='submit' className='dropdown' />
+        <input id='dropMenu' type='submit' className='submitButton' />
       </form>
 
       <div className='stretchBox'>{stretchComponents}</div>

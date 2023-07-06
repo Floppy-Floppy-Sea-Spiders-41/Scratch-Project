@@ -100,8 +100,6 @@ body {
 
 /*-------------------- MAINCONTAINER STYLES --------------------*/
 
-
-
 .searchBar {
   display: flex;
   justify-content: center;
@@ -248,12 +246,31 @@ body {
   border-bottom-right-radius: 5px;
 }
 /*-------------------- DROPDOWN MENU STYLES --------------------*/
-.dropdown {
-  width: 400px;
-  user-select: none;
-  margin: 100px auto;
-  position: relative;
+.submitButton {
+  background: #7673d4;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+.submitButton:hover {
+  background-color: #5e5bad;
+}
+.selectInput {
+  background-color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 10px 10px;
+  width: 130px;
+}
+
+/* .selectInput:hover {
+  background-color: #333;
+} */
+
 
 .dropdown-btn {
   padding: 10px;
@@ -278,17 +295,12 @@ body {
   width: 95%;
 }
 
- .dropdown-item {
+.dropdown-item {
   padding: 10px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
- .dropdown-item:hover {
+.dropdown-item:hover {
   background: #f0ebeb;
 }
-
-
-
-
-

@@ -29,6 +29,11 @@ body {
   color: #7673d4;
 }
 
+.flex-item {
+  display: flex;
+  align-items: center;
+}
+
 #flex-item p {
   font-weight: 300;
 }
@@ -56,6 +61,16 @@ body {
   background-color: #5e5bad;
 }
 
+.icon {
+  height: 60px; 
+  margin-right: 10px; 
+}
+
+.navHeader {
+  font-size: 2rem; 
+}
+
+
 /*-------------------- MAINCONTAINER STYLES --------------------*/
 .main-container {
   display: flex;
@@ -66,23 +81,30 @@ body {
 .section {
   display: flex;
   gap: 20px;
+  align-items: center; 
 }
 
 .image {
   flex: 1;
-}
-
-.image img {
-  width: 100%;
-  height: auto;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center; 
+  text-align: center; 
 }
+
+
+.image img {
+  width: 100%;
+  height: auto;
+}
+
+
 
 .reverse {
   flex-direction: row-reverse;

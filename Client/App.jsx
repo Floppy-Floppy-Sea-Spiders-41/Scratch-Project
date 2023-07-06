@@ -8,6 +8,8 @@ import SearchContainer from './containers/SearchContainer.jsx';
 // Init func app that returns our main containers
 const App = () => {
   return (
+
+    
     <Router>
       <HeaderContainer />
       <Routes>

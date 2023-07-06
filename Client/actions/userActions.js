@@ -30,6 +30,7 @@ export const login = (email, password) => async (dispatch) => {
 			{ email, password },
 			config
 		);
+        console.log('userAction/login axios response: ', data)
 
 		dispatch({
 			type: USER_LOGIN_SUCCESS,
@@ -52,7 +53,7 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
 	//localStorage.removeItem('userInfo');
 	dispatch({ type: USER_LOGOUT });
-	document.location.href = '/login'
+	
 };
 
 export const register = (name, email, password) => async (dispatch) => {

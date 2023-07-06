@@ -7,9 +7,11 @@ import {
 	USER_REGISTER_FAIL,
 	USER_REGISTER_REQUEST,
 	USER_REGISTER_SUCCESS,
-	USER_LOGOUT,
+	USER_LOGOUT
 	
 } from '../constants/userConstants';
+
+import { FAVORITES_LIST_REQUEST, FAVORITES_LIST_SUCCESS, FAVORITES_LIST_ADD_REQUEST, FAVORITES_LIST_ADD_SUCCESS, FAVORITES_LIST_ADD_FAIL } from '../constants/favoritesConstants';
 
 
 
@@ -36,6 +38,13 @@ export const login = (email, password) => async (dispatch) => {
 			type: USER_LOGIN_SUCCESS,
 			payload: data,
 		});
+
+        dispatch({
+            type: FAVORITES_LIST_SUCCESS,
+            payload: data.userDetail.favStretches
+        })
+
+
 
 		//localStorage.setItem('userInfo', JSON.stringify(data));
 	} catch (error) {
@@ -98,38 +107,39 @@ export const register = (name, email, password) => async (dispatch) => {
 	}
 };
 
-export const getUserDetails = (id) => async (dispatch, getState) => {
-	try {
-		dispatch({
-			type: USER_DETAILS_REQUEST,
-		});
+export const addFavorite = (email, name, equipment, difficulty, instructions) => async (dispatch) => {
 
-		const {
-			userLogin: { userInfo },
-		} = getState();
+    
+    try{
+    dispatch({type: FAVORITES_LIST_ADD_REQUEST})
 
-		const config = {
-			headers: {
-				'Content-Type': 'application/json',
-				authorization: `Bearer ${userInfo.token}`,
-			},
-		};
+    const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+  
+      const { data } = await axios.patch(
+        '/api/favoriteTest',
+        { email, name, equipment, difficulty, instructions},
+        config
+      );
 
-		const { data } = await axios.get(`/api/users/${id}`, config);
+      dispatch({
+        type: FAVORITES_LIST_ADD_SUCCESS,
+        payload: data.addedFavoritesList
+      })
 
-		dispatch({
-			type: USER_DETAILS_SUCCESS,
-			payload: data,
-		});
-	} catch (error) {
+    }catch (error) {
 		console.log(error.message);
 		dispatch({
-			type: USER_DETAILS_FAIL,
+			type: FAVORITES_LIST_ADD_FAIL,
 			payload:
 				error.response && error.response.data.message
 					? error.response.data.message
 					: error.message,
 		});
 	}
-};
+
+}
 

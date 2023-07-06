@@ -27,6 +27,7 @@ body {
   font-weight: 500;
   letter-spacing: 1.5px;
   color: #7673d4;
+  cursor: pointer;
 }
 
 .flex-item {
@@ -36,6 +37,7 @@ body {
 
 #flex-item p {
   font-weight: 300;
+   align-items: center;/* MAYBE REMOVE? */
 }
 
 #flex-item button {
@@ -62,12 +64,12 @@ body {
 }
 
 .icon {
-  height: 60px; 
-  margin-right: 10px; 
+  height: 60px;
+  margin-right: 10px;
 }
 
 .navHeader {
-  font-size: 2rem; 
+  font-size: 2rem;
 }
 
 
@@ -81,30 +83,27 @@ body {
 .section {
   display: flex;
   gap: 20px;
-  align-items: center; 
+  /* align-items: center; MAYBE USE? */
 }
 
 .image {
   flex: 1;
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
 }
 
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  text-align: center; 
+  align-items: center;
+  text-align: center;
 }
-
 
 .image img {
   width: 100%;
   height: auto;
 }
-
-
 
 .reverse {
   flex-direction: row-reverse;
@@ -122,8 +121,9 @@ body {
 
 /*-------------------- MAINCONTAINER STYLES --------------------*/
 
-
-
+/* .searchContainer {
+  background-image: url(./images/pic1.svg);
+} */
 .searchBar {
   display: flex;
   justify-content: center;
@@ -160,16 +160,30 @@ body {
 }
 
 .stretchComp {
-  background-color: #f9f4f9;
-  border-radius: 5px;
+  background-image: linear-gradient(
+    to top,
+    #fdcbf1 0%,
+    #fdcbf1 1%,
+    #e6dee9 100%
+  );
+  border-radius: 25px;
   margin: 10px;
   padding: 20px;
   width: calc(33.33% - 20px);
-  box-shadow: 10px -2px 20px 2px rgba(114, 114, 114, 0.3);
+  border: 1px solid white;
+  /* box-shadow: 10px -2px 20px 2px rgba(114, 114, 114, 0.3); */
+  text-shadow: rgba(136, 125, 148, .3) 0 0 10px;
   transition: box-shadow 0.3s ease;
 }
 
-.stretchComp:hover {
+//* .stretchComp:nth-child(even) {/
+/background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);/
+/}/
+/.stretchComp:nth-child(odd) {/
+/background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);/
+/} */
+
+.stretchComp:hover/ {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -272,29 +286,26 @@ body {
 
 /*-------------------- STRETCH COMPONENT STYLES --------------------*/
 .stretchComp {
-  
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .stretchComp button {
-  
   padding: 10px 20px;
   background-color: #7673d4;
   color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: auto; 
-  align-self: flex-end; 
+  margin-top: auto;
+  align-self: flex-end;
   transition: background-color 0.3s ease;
 }
 
 .stretchComp button:hover {
   background-color: #5e5bad;
 }
-
 
 /*-------------------- DROPDOWN MENU STYLES --------------------*/
 .dropdown {
@@ -303,6 +314,37 @@ body {
   margin: 100px auto;
   position: relative;
 }
+.submitButton {
+  background: #7673d4;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 20px 0px 10px 20px;
+  margin-left: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* margin-top: 20px; */
+  /* margin-left: auto; */
+  /* margin: auto; */
+}
+.submitButton:hover {
+  background-color: #5e5bad;
+}
+
+.selectInput {
+  background-color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 10px 10px;
+  width: 130px;
+  margin-left: 45%;
+}
+
+/* .selectInput:hover {/
+/background-color: #333;/
+/} */
+
 
 .dropdown-btn {
   padding: 10px;
@@ -327,17 +369,16 @@ body {
   width: 95%;
 }
 
- .dropdown-item {
+.dropdown-item {
   padding: 10px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
- .dropdown-item:hover {
+.dropdown-item:hover {
   background: #f0ebeb;
 }
 
-
-
-
-
+.faveButton {
+  border-radius: 50px;
+}

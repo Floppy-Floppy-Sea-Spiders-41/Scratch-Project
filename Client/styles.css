@@ -247,6 +247,33 @@ body {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
+/*-------------------- STRETCH COMPONENT STYLES --------------------*/
+.stretchComp {
+  /* ... your existing styles ... */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stretchComp button {
+  /* Apply consistent button styling */
+  padding: 10px 20px;
+  background-color: #7673d4;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: auto; /* Push the button to the bottom of the container */
+  align-self: flex-end; /* Right-justify the button within the container */
+  transition: background-color 0.3s ease;
+}
+
+.stretchComp button:hover {
+  background-color: #5e5bad;
+}
+
+
 /*-------------------- DROPDOWN MENU STYLES --------------------*/
 .dropdown {
   width: 400px;
